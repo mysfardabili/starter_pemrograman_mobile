@@ -9,6 +9,7 @@ class QuizViewModel extends ChangeNotifier {
   int answeredQuestionCount = 0;
   int score = 0;
   bool didAnswerQuestion = false;
+  int? selectedAnswer;
   bool get hasNextQuestion => answeredQuestionCount < totalQuestions;
 
   QuizViewModel({required this.onGameOver}) {
@@ -23,6 +24,7 @@ class QuizViewModel extends ChangeNotifier {
     }
 
     didAnswerQuestion = false;
+    selectedAnswer = null;
 
     notifyListeners();
   }
@@ -33,6 +35,7 @@ class QuizViewModel extends ChangeNotifier {
     }
 
     didAnswerQuestion = true;
+    selectedAnswer = selectedIndex;
 
     if (!_questionBank.hasNextQuestion) {
       onGameOver();

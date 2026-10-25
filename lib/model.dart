@@ -4,6 +4,7 @@ class Question {
   final String question;
   final List<String> possibleAnswers;
   final int correctAnswer;
+
   Question(this.question, this.possibleAnswers, this.correctAnswer);
 }
 
@@ -14,13 +15,9 @@ class QuestionBank {
   int get remainingQuestions => _questions.length;
 
   Question? getRandomQuestion() {
-    if (_questions.isEmpty) {
-      return null;
-    }
-
-    var i = math.Random().nextInt(_questions.length);
-    var question = _questions[i];
-
+    if (_questions.isEmpty) return null;
+    final i = math.Random().nextInt(_questions.length);
+    final question = _questions[i];
     _questions.removeAt(i);
     return question;
   }
@@ -29,24 +26,49 @@ class QuestionBank {
 List<Question> _createQuestions() {
   return [
     Question(
-      'What class used to create custom explicit animations in Flutter?',
-      ['AnimationController', 'AnimatedWidget', 'AnimatedBuilder', 'Tween'],
+      'Widget apa yang digunakan untuk membuat animasi implisit di Flutter?',
+      ['AnimatedContainer', 'AnimationController', 'CustomPainter', 'Transform'],
       0,
     ),
     Question(
-      'Which widget is used to rebuild its child whenever an animation changes?',
+      'Class apa yang digunakan untuk membuat dan mengontrol animasi eksplisit?',
+      ['TweenSequence', 'AnimatedBuilder', 'AnimationController', 'Interval'],
+      2,
+    ),
+    Question(
+      'Curve mana yang menghasilkan efek "memantul" atau springy?',
+      ['Curves.linear', 'Curves.easeIn', 'Curves.decelerate', 'Curves.elasticOut'],
+      3,
+    ),
+    Question(
+      'Widget apa yang digunakan untuk merender ulang child setiap kali nilai animasi berubah?',
+      ['AnimatedOpacity', 'AnimationController', 'AnimatedBuilder', 'AnimatedSwitcher'],
+      2,
+    ),
+    Question(
+      'Apa fungsi dari Tween dalam sistem animasi Flutter?',
       [
-        'AnimatedContainer',
-        'AnimatedBuilder',
-        'AnimatedSwitcher',
-        'AnimatedOpacity',
+        'Menentukan durasi animasi',
+        'Menentukan nilai awal dan akhir animasi',
+        'Mengontrol kecepatan frame',
+        'Membuat widget baru secara otomatis',
       ],
       1,
     ),
     Question(
-      'What class is used to define the start and end values for an animation?',
-      ['Tween', 'Curve', 'AnimationController', 'AnimatedWidget'],
-      0,
+      'Widget apa yang digunakan untuk transisi otomatis antar dua widget berbeda?',
+      ['Navigator', 'Stack', 'AnimatedSwitcher', 'Opacity'],
+      2,
+    ),
+    Question(
+      'Apa arti "vsync" pada AnimationController di Flutter?',
+      [
+        'Kecepatan maksimum animasi',
+        'Jumlah pengulangan animasi',
+        'Sinkronisasi dengan refresh rate layar',
+        'Arah animasi (maju/mundur)',
+      ],
+      2,
     ),
   ];
 }
